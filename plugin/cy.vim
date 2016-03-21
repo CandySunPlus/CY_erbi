@@ -383,7 +383,7 @@ function! s:CyHighlight() "{{{
     elseif s:cy_{b:cy_parameters["active_mb"]}_gb == 0
         let b:cy_parameters["highlight_imname"] = 'WarningMsg'
     endif
-endfunction "}}}
+endfunction "}}}FileMerge
 
 function! s:Cy_keymap_punc() "{{{
     for p in keys(s:cy_{b:cy_parameters["active_mb"]}_puncdic)
@@ -650,11 +650,13 @@ function! s:Cy_echofinalresult(list) "{{{
         let cybar .= ' ' . c.nr . ':' . c.word . c.suf . c.help
     endfor
     " Try to prevent hit-enter-prompt.
-    let cmdheight = ((strlen(cybar) + columns/2) / columns) + 1
-    if cmdheight != &cmdheight
-        execute 'setlocal cmdheight=' . cmdheight
-        redraw
-    endif
+    " let cmdheight = ((strlen(cybar) + columns/2) / columns) + 1
+    " if cmdheight != &cmdheight
+    "     execute 'setlocal cmdheight=' . cmdheight
+    " endif
+    execute 'setlocal cmdheight=1'
+    redraw
+
     let ModeStr = <SID>Cy_GetMode()
     echo ModeStr
     execute 'echohl '.b:cy_parameters["highlight_imname"]
