@@ -383,7 +383,7 @@ function! s:CyHighlight() "{{{
     elseif s:cy_{b:cy_parameters["active_mb"]}_gb == 0
         let b:cy_parameters["highlight_imname"] = 'WarningMsg'
     endif
-endfunction "}}}FileMerge
+endfunction "}}}
 
 function! s:Cy_keymap_punc() "{{{
     for p in keys(s:cy_{b:cy_parameters["active_mb"]}_puncdic)
@@ -718,7 +718,7 @@ function! s:Cy_char(key) "{{{
         let swap_char = ''
         let to_char = ''
         let key = nr2char(keycode)
-        let keypat = '\V'.escape(key, '\')
+        let keypat = '\V'.escape(key, '\').'\C'
         if (keycode == "\<BS>") || (keycode == char2nr(s:cy_delete_key)) || (keycode == s:cy_delete_key2) "backspace
             if g:cy_to_english == 1
                 return key
